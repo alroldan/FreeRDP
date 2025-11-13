@@ -34,9 +34,11 @@ jobs:
         run: |
           ./scripts/mingw.sh -c -s --clean-first
 
-      # --- I HAVE REPLACED THE FAILED UPLOAD STEP WITH THIS ---
-      - name: "Find The Dang Files"
-        run: |
-          echo "--- The build is done. Listing all files. ---"
-          ls -laR
+      # --- THIS IS THE ONE, TRUE, CORRECTED UPLOAD STEP ---
+      - name: "Upload [static] Artifacts"
+        uses: actions/upload-artifact@v4
+        with:
+          name: freerdp-windows-static-build-3.18.0
+          path: build-mingw-static/install/
+          if-no-files-found: error
           
